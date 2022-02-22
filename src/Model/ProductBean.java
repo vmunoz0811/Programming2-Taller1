@@ -1,3 +1,6 @@
+/**
+ * Package that contains the methods to complete the requirements of the problem
+ */
 package Model;
 
 import com.opencsv.bean.CsvBindByName;
@@ -40,10 +43,11 @@ public class ProductBean {
     }
 
     public String toString() {
-        return " No. Factura " + " || " + " No. inventario " + " || "  + " Descripcion " + " || " + " Cantidad "
-                + " || " + " Fecha " + " || " + " Precio " + " || " + " ID cliente " + " || " + " Pais " + "\n" + InvoiceNo + " || " +
-                StockCode + " || " + Description + " || " + Quantity + " || " + InvoiceDate + " || " + UnitPrice + " || " + CustomerID
-                + " || " + Country;
+        String line1 = " No. Factura " + " | " + " No. inventario " + " | "  + " Descripcion " + " | " + " Cantidad "
+                + " | " + " Fecha " + " | " + " Precio " + " | " + " ID cliente " + " | " + " Pais " + "\n";
+        return  "\n" + line1 + InvoiceNo + " | " +
+                StockCode + " | " + Description + " | " + Quantity + " | " + InvoiceDate + " | " + UnitPrice + " | " + CustomerID
+                + " | " + Country + "\n";
     }
 
     public String getInvoiceNo() {

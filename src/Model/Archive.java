@@ -14,14 +14,6 @@ import java.util.List;
  * Class that initialize the CSV file with the information of the invoice
  */
 public class Archive {
-    /**
-     * SimpleDateFormat object to identify de wrong date that is in the file
-     */
-    private final SimpleDateFormat wrongDate = new SimpleDateFormat("MM/DD/YYYY");
-    /**
-     * SimpleDateFormat object to convert the wrong date into the format that we need to evaluate
-     */
-    private final SimpleDateFormat rightDate = new SimpleDateFormat("DD/MM/YYYY");
 
     /**
      * Constructor method
@@ -36,20 +28,27 @@ public class Archive {
      */
     public static List <ProductBean> uploadData(){
         List <ProductBean> list = new ArrayList <> ();
+
         try {
 
             CSVReader reader = new CSVReader(new FileReader("data/dataShop.csv"));
             reader.readNext();
             String line [];
             while((line = reader.readNext()) != null) {
+                SimpleDateFormat rightDate = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat wrongDate = new SimpleDateFormat("MM/dd/yyyy");
 
+                Date newDate = wrongDate.parse(line[4]);
+                line[4] = rightDate.format(newDate);
                 ProductBean sell = new ProductBean(line[0], line[1], line[2], Integer.parseInt(line[3]), line[4],
                         Double.parseDouble(line[5]), line[6].length() != 0? Integer.parseInt(line[6]) : 0, line[7]);
                 list.add(sell);
+                System.out.println(line[4]);
             }
             System.out.println("La cantidad de datos almacenados -> " + list.size());
         } catch(Exception e) { e.printStackTrace(); }
         return list;
+
     }
 
     /**
@@ -63,6 +62,12 @@ public class Archive {
             reader.readNext();
             String line [];
             while((line = reader.readNext()) != null) {
+                SimpleDateFormat rightDate = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat wrongDate = new SimpleDateFormat("MM/dd/yyyy");
+
+                Date newDate = wrongDate.parse(line[4]);
+                line[4] = rightDate.format(newDate);
+
                 ProductBean sell = new ProductBean(line[0], line[1], line[2], Integer.parseInt(line[3]), line[4],
                         Double.parseDouble(line[5]), line[6].length() != 0? Integer.parseInt(line[6]) : 0, line[7]);
 
@@ -127,4 +132,20 @@ public class Archive {
         return stockNo;
     }
 
+    /**
+     * Method that shows the monthly average with the option to group by country
+     * @param groupByCountry Boolean that identifies the country and group them to make the average
+     */
+    public static double avgMonthlySales (Boolean groupByCountry){
+        double monthlyAverage = 0.0;
+        groupByCountry = Boolean.FALSE;
+        List <ProductBean> list = new ArrayList <> ();
+        list=uploadData();
+        if (!list.isEmpty()){
+            for(int i = 0; i < list.size(); i++){
+                if(list.get(i).getCountry().equalsIgnoreCase(country))
+            }
+        }
+     return monthlyAverage;
+    }
 }
