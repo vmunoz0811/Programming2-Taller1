@@ -15,9 +15,7 @@ public class Archive {
     /**
      * Constructor method
      */
-    public Archive() {
-
-    }
+    public Archive() { }
 
     /**
      * Method used for upload data (CSV file)
