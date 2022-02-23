@@ -55,8 +55,8 @@ public class Model {
      * @param search
      * @return The average per month of products sold by this code
      */
-    public List<String> avgByCountry(boolean search) {
-        return Archive.avgMonthSales(search);
+    public void avgByCountry(boolean search) {
+        Archive.avgMonthSales(search).forEach(x-> System.out.println(x));
     }
 
 }

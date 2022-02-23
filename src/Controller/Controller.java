@@ -44,15 +44,7 @@ public class Controller {
                         view.showInfo("" + model.searchByStockCode(j));
                         break;
                     case 5:
-                        j=view.readString("Desea que el promedio sea por pais? SI / NO");
-                        String SI="";
-                        boolean rta = true;
-                        if (j.equalsIgnoreCase(SI)){
-                            rta = true;
-                        }else{
-                            rta = false;
-                        }
-                        view.showInfo("" + model.avgByCountry(rta));
+                        model.avgByCountry(true);
                         break;
                 }
             }while(menu != 0);
