@@ -12,7 +12,6 @@ import java.util.*;
  * Class that initialize the CSV file with the information of the invoice
  */
 public class Archive {
-
     /**
      * Constructor method
      */
@@ -53,14 +52,14 @@ public class Archive {
      * @return Total price of sales
      */
     public static double sumTotalSales() {
-            double j2=0.0;
+            double totalSales = 0.0;
             List <ProductBean> list = new ArrayList <> ();
             list = uploadData();
             if (!list.isEmpty()) {
                 for (int i = 0; i < list.size(); i++) {
-                    j2=list.get(i).getQuantity() * list.get(i).getUnitPrice()+j2;
+                    totalSales = list.get(i).getQuantity() * list.get(i).getUnitPrice() + totalSales;
                 }
-            }return j2;
+            }return totalSales;
     }
 
     /**
@@ -103,7 +102,6 @@ public class Archive {
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).getStockCode().equalsIgnoreCase(stockCode)) {
                     stockNo += list.get(i).getQuantity();
-
                 } else {
                     if (stockNo == 0) {
                         break;
@@ -113,12 +111,11 @@ public class Archive {
                 }
             }
         }
-
         return stockNo;
     }
 
     /**
-     * **This method had been complete from classmates help. Is not 100% our**
+     * **This method had been complete from classmates help. Is not 100% ours**
      * Method that shows the average of sales by country monthly
      * @param groupByCountry Boolean that identify the countries to evaluate
      * @return country: average of sales monthly
