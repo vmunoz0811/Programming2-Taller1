@@ -23,8 +23,8 @@ public class Controller {
                         "\n 1. Cantidad total de datos" +
                         "\n 2. Cantidad total de ventas"+
                         "\n 3. Consulta factura"+
-                        "\n 4. Consulta Stock"
-                        +
+                        "\n 4. Consulta Stock" +
+                        "\n 5. Promedio Ventas" +
                         "\n 0. Salir");
 
                 switch(menu) {
@@ -42,6 +42,17 @@ public class Controller {
                     case 4:
                         j=view.readString("Ingrese el stockCode de factura");
                         view.showInfo("" + model.searchByStockCode(j));
+                        break;
+                    case 5:
+                        j=view.readString("Desea que el promedio sea por pais? SI / NO");
+                        String SI="";
+                        boolean rta = true;
+                        if (j.equalsIgnoreCase(SI)){
+                            rta = true;
+                        }else{
+                            rta = false;
+                        }
+                        view.showInfo("" + model.avgByCountry(rta));
                         break;
                 }
             }while(menu != 0);

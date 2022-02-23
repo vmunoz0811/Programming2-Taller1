@@ -3,6 +3,8 @@
  */
 package Model;
 
+import java.util.List;
+
 /**
  * Class that transfer the methods wrote on archive class
  */
@@ -47,4 +49,14 @@ public class Model {
         return Archive.countByStockCode(search);
 
     }
+
+    /**
+     * Method to avg the average per month and country
+     * @param search
+     * @return The average per month of products sold by this code
+     */
+    public List<String> avgByCountry(boolean search) {
+        return Archive.avgMonthSales(search);
+    }
+
 }
