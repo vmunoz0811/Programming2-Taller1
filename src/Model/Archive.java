@@ -198,32 +198,37 @@ public class Archive {
         }
     }
 
-    public static String findPartiallyByDescription(String j, boolean t, int j2, int j3) {
-        String stockNo = "";
+    /**
+     * Method that finds the coincidences of a product by their keyword that exist on their descriptions
+     * @param description Keyword that identify the product
+     * @param month Boolean to identify months
+     * @param range1 Init month by numbers
+     * @param range2 End month by numbers
+     * @return All products that has coincidences with the keywords that the user wants to evaluate
+     */
+    public static String findPartiallyByDescription(String description, boolean month, int range1, int range2) {
+       String productsFound = "";
         List<ProductBean> list = new ArrayList<>();
         list = uploadData();
+
         if (!list.isEmpty()) {
             for (int i = 0; i < list.size(); i++) {
                 String data[] = list.get(i).getInvoiceDate().split("/");
-                if (t) {
-
-                    if (Integer.parseInt(data[1]) >= j2 && Integer.parseInt(data[1]) <= j3) {
-                        if (list.get(i).getDescription().contains(j)) {
-                            stockNo += (list.get(i).getDescription() + " cantidad vendida: " + list.get(i).getQuantity() + "\n");
-
+                if (month) {
+                    if (Integer.parseInt(data[1]) >= range1 && Integer.parseInt(data[1]) <= range2) {
+                        if (list.get(i).getDescription().contains(description)) {
+                            productsFound += (list.get(i).getDescription() + " Cantidad vendida: " + list.get(i).getQuantity() + "\n");
+                       // String StrockNo[]=stockNo;
                         }
                     }
 
                 } else {
-                    if (list.get(i).getDescription().contains(j)) {
-                        stockNo += (list.get(i).getDescription() + " cantidad vendida: " + list.get(i).getQuantity() + "\n");
-
+                    if (list.get(i).getDescription().contains(description)) {
+                        productsFound += (list.get(i).getDescription() + " Cantidad vendida: " + list.get(i).getQuantity() + "\n");
                     }
                 }
-
             }
         }
-
-        return stockNo;
+        return productsFound;
     }
 }

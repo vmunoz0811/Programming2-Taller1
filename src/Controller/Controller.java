@@ -37,12 +37,13 @@ public class Controller {
             int menu = 0;
             do {
                 menu = view.readInt("" +
-                        "\n Selecciona la opcion a realizar" +
+                        "\n Selecciona la opción a realizar" +
                         "\n 1. Cantidad total de datos" +
                         "\n 2. Cantidad total de ventas"+
                         "\n 3. Consulta factura"+
                         "\n 4. Consulta Stock" +
                         "\n 5. Promedio Ventas" +
+                        "\n 6. Buscar producto por palabra clave" +
                         "\n 0. Salir");
 
                 switch(menu) {
@@ -66,20 +67,17 @@ public class Controller {
 
                         break;
                     case 6:
-                        boolean t= true;
-                        msg =view.readString("Ingrese el producto deceseado");
-                        String msg2=view.readString("desea filtrar por mes");
-                        if(msg2.equalsIgnoreCase("si")){
-
-                            int msg3=view.readInt("Ingrese el inicio del rango de meses");
-                            int msg4=view.readInt("Ingrese el fin del rango de meses\"");
-                            view.showInfo("" + model.findPartiallyByDescription(msg,t,msg3,msg4));
+                        boolean month = true;
+                        msg = view.readString("Ingrese la palabra clave del producto deseado").toUpperCase();
+                        String msg2=view.readString("¿Desea filtrar por mes? (Si/No)");
+                        if(msg2.equalsIgnoreCase("Si")){
+                            int initMonth =view.readInt("Ingrese el inicio del rango de meses (Use números enteros 1 al 12)");
+                            int endMonth =view.readInt("Ingrese el fin del rango de meses(Use números enteros 1 al 12)\"");
+                            view.showInfo("" + model.findPartiallyByDescription(msg,month,initMonth,endMonth));
                         }else {
-                            t= false;
-                            view.showInfo("" + model.findPartiallyByDescription(msg,t,0,0));
+                            month = false;
+                            view.showInfo("" + model.findPartiallyByDescription(msg,month,0,0));
                         }
-
-
                         break;
                 }
             }while(menu != 0);

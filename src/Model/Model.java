@@ -3,6 +3,8 @@
  */
 package Model;
 
+import java.util.List;
+
 /**
  * Class that transfer the methods wrote on archive class
  */
@@ -49,17 +51,24 @@ public class Model {
     }
 
     /**
-     * Method to avg the average per month and country
-     * @param search
-     * @return The average per month of products sold by this code
+     * Method to look for the average per month and country
+     * @param search Boolean that change the conditional
+     * @return The average per month of products sold
      */
     public void avgByCountry(boolean search) {
         Archive.avgMonthSales(search).forEach(x-> System.out.println(x));
     }
 
-    public String findPartiallyByDescription(String search,boolean t, int mth1,int moth2) {
-        return Archive.findPartiallyByDescription(search,t, mth1,moth2);
-
+    /**
+     * Method that finds a product by their description found from a keyword
+     * @param description Keyword that shows the products that have it
+     * @param month Identify if the range selected have the month or not
+     * @param range1 Init month receive by int
+     * @param range2 End month receive by int
+     * @return List of products that have the keyword introduce by the user
+     */
+    public String findPartiallyByDescription(String description, boolean month, int range1, int range2) {
+        return Archive.findPartiallyByDescription(description,month,range1,range2);
     }
 }
 
