@@ -3,8 +3,6 @@
  */
 package Model;
 
-import java.util.List;
-
 /**
  * Class that transfer the methods wrote on archive class
  */
@@ -59,4 +57,9 @@ public class Model {
         Archive.avgMonthSales(search).forEach(x-> System.out.println(x));
     }
 
+    public String findPartiallyByDescription(String search,boolean t, int mth1,int moth2) {
+        return Archive.findPartiallyByDescription(search,t, mth1,moth2);
+
+    }
 }
+

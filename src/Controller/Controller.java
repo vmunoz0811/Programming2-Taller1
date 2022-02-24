@@ -63,6 +63,23 @@ public class Controller {
                         break;
                     case 5:
                         model.avgByCountry(true);
+
+                        break;
+                    case 6:
+                        boolean t= true;
+                        msg =view.readString("Ingrese el producto deceseado");
+                        String msg2=view.readString("desea filtrar por mes");
+                        if(msg2.equalsIgnoreCase("si")){
+
+                            int msg3=view.readInt("Ingrese el inicio del rango de meses");
+                            int msg4=view.readInt("Ingrese el fin del rango de meses\"");
+                            view.showInfo("" + model.findPartiallyByDescription(msg,t,msg3,msg4));
+                        }else {
+                            t= false;
+                            view.showInfo("" + model.findPartiallyByDescription(msg,t,0,0));
+                        }
+
+
                         break;
                 }
             }while(menu != 0);
