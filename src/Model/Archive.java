@@ -139,20 +139,11 @@ public class Archive {
         return stockNo;
     }
 
-
-    public static List MonthlySales() {
-        List<ProductBean> list = new ArrayList<>();
-        list = uploadData();
-        List<String> Date = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            if (!Date.contains(list.get(i).getCountry())) {
-                Date.add(list.get(i).getCountry());
-            }
-
-        }
-
-        return Date;
-    }
+    /**
+     * Method that return monthly average by country
+     * @param groupByCountry Boolean that group countries
+     * @return List with country: monthly average
+     */
 
     public static List<String> avgMonthSales(boolean groupByCountry) {
         HashMap<String, Double> averageCountry = new HashMap<String, Double>();
